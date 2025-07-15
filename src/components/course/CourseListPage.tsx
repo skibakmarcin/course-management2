@@ -389,11 +389,14 @@ const ErrorState: React.FC<{ error: string }> = ({ error }) => (
 );
 
 // Empty State Component
-const EmptyState: React.FC = () => (
+const EmptyState: React.FC<{ onCreateCourse: () => void }> = ({ onCreateCourse }) => (
   <div className="bg-white rounded-xl shadow-lg p-12 text-center">
     <div className="text-gray-400 text-6xl mb-4">📚</div>
     <Text className="text-xl font-semibold text-gray-600 mb-2">No courses found</Text>
-    <Text className="text-gray-500">Try adjusting your filters or create a new course</Text>
+    <Text className="text-gray-500 mb-6">Try adjusting your filters or create a new course</Text>
+    <Button colorScheme="blue" onClick={onCreateCourse} className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200">
+      + Create Course
+    </Button>
   </div>
 );
 
@@ -525,7 +528,7 @@ const CourseListPage: React.FC = () => {
   // Render states
   if (loading) return <LoadingState />;
   if (error) return <ErrorState error={error} />;
-  if (filtered.length === 0) return <EmptyState />;
+  if (filtered.length === 0) return <EmptyState onCreateCourse={() => navigate('/create')} />;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
