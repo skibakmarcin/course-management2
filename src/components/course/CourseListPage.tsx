@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import {
   Button, Input, SimpleGrid, Text, Spinner, useToast, Select, IconButton
 } from '@chakra-ui/react';
-import { ViewOffIcon, EditIcon, DeleteIcon, CheckIcon, RepeatIcon, ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
+import { EditIcon, DeleteIcon, CheckIcon, RepeatIcon, ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
 import { useCourseContext } from '../../store/CourseContext';
 import { COURSE_STATUSES } from '../../constants/courseStatus';
 import { COURSE_SORT_OPTIONS } from '../../constants/sortOptions';
