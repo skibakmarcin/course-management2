@@ -1,46 +1,108 @@
-# Getting Started with Create React App
+# Course Management App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, full-featured React application for managing educational courses. Built with React 19, Chakra UI, Tailwind CSS, and robust state management and testing practices.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 1. Setup Instructions
 
-### `npm start`
+### Prerequisites
+- Node.js >= 16
+- npm >= 8
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Installation
+```sh
+git clone <your-repo-url>
+cd course-management
+npm install
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Running the App
+```sh
+npm start
+```
+The app will be available at [http://localhost:3000](http://localhost:3000).
 
-### `npm test`
+### Running Tests
+```sh
+npm test
+```
+Runs all unit and integration tests using Jest and React Testing Library.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Building for Production
+```sh
+npm run build
+```
+Builds the app for deployment to the `build/` directory.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 2. Architecture Decisions
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **React 19 + TypeScript**: Modern, type-safe, and future-proof for scalable UI development.
+- **Component Structure**: 
+  - `src/components/course/` — Page-level and form components for course management
+  - `src/components/ui/` — Reusable UI elements (badges, dialogs, drag & drop, etc.)
+- **State Management**: 
+  - Uses React Context (`src/store/CourseContext.tsx`) for global course state, with async actions for CRUD and reordering
+- **Styling**: 
+  - **Chakra UI** for accessible, themeable components
+  - **Tailwind CSS** for utility-first, responsive design
+- **Drag & Drop**: 
+  - Uses `@dnd-kit` for modern, accessible drag-and-drop reordering
+- **API Layer**: 
+  - `src/services/courseApi.ts` abstracts all backend interactions (mocked for local dev/testing)
+- **Testing**: 
+  - Jest + React Testing Library for unit and integration tests
+  - Mocks for API and browser APIs in `src/setupTests.ts`
+- **Accessibility**: 
+  - ARIA labels, keyboard navigation, and color contrast considered throughout
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 3. Feature Explanations
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Course Management
+- **Create, Edit, Delete**: Full CRUD for courses, with form validation and error handling
+- **Publish/Archive**: Change course status with one click
+- **Drafts**: Auto-save and restore in-progress course forms
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Filtering & Sorting
+- **Status Filter**: Filter by draft, published, archived, or all
+- **Search**: Instant search by course title
+- **Advanced Filters**: Filter by creation date range and duration range
+- **Sorting**: Sort by title, creation date, or duration (asc/desc)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Drag & Drop Reordering
+- **Drag View**: Switch to drag mode to reorder courses visually
+- **Persistence**: Order is maintained in state (can be extended to persist to backend)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### UI/UX
+- **Responsive Design**: Works on all screen sizes
+- **Accessible**: Keyboard navigation, ARIA labels, and color contrast
+- **Visual Feedback**: Toasts, badges, and clear error messages
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 4. Testing Approach
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Unit & Integration Tests**: All critical user flows are covered:
+  - Viewing, filtering, searching, and sorting courses
+  - Creating, editing, publishing, archiving, and deleting courses
+  - Drag & drop reordering
+  - Form validation and error handling
+  - Accessibility checks (labels, ARIA, keyboard navigation)
+- **Testing Tools**:
+  - **Jest**: Test runner and assertion library
+  - **React Testing Library**: For rendering components and simulating user interactions
+  - **Mocking**: API and browser APIs are mocked for deterministic, fast tests
+- **Test Organization**:
+  - Tests are colocated in `__tests__` folders next to the code they cover
+  - Global setup and mocks in `src/setupTests.ts`
+- **How to Run**:
+  - `npm test` — Runs all tests
+  - Coverage and watch modes are supported
+
+---
+
+For more details, see the code comments and test files. Enjoy building and managing your courses!
